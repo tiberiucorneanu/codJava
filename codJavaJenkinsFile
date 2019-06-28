@@ -1,22 +1,5 @@
 #!/usr/bin/env groovy
 
-//variables
-EXEC_ARGUMENTS = env.ARGUMENTS
-DefaultMailSender = "PlatformTeam@temenos.com"
-def DefaultMailReceiver = env.CONTACT_EMAIL
-def PLATFORM_TYPE = env.PLATFORM_TYPE
-def ATTACHMENT_PATTERN = env.ATTACHMENT_PATTERN
-
-//methods
-def send_email_with_artifacts(email_recipient, email_body, email_subject, attachPattern = "") {
-    println "attachPattern: " + attachPattern
-
-    if (!attachPattern.isEmpty()) {
-        emailext mimeType: 'text/html', attachLog: false, body: email_body, subject: email_subject, to: email_recipient, from: DefaultMailSender, attachmentsPattern: attachPattern
-    } else {
-        emailext mimeType: 'text/html', attachLog: false, body: email_body, subject: email_subject, to: email_recipient, from: DefaultMailSender
-    }
-}
 
 node('master'){
     println "Starting processing Groovy script"
