@@ -3,10 +3,7 @@
 
 node('master'){
     println "Starting processing Groovy script"
-    agent any
-    tools {
-        maven 'Maven_3.5.2' 
-    }
+
     try
     {
         // Compiling the DemoApplication source from GitHub Master repository.
@@ -16,7 +13,7 @@ node('master'){
                 checkout scm
                 dir("DemoApplication"){
                     withMaven(
-                            maven: 'maven3.3.9',
+                            maven: 'maven-3',
                             jdk: 'JDK1.8') {
 
                             // Run the maven build
